@@ -1,0 +1,34 @@
+// OpenClaw configuration for Bold Layers AI Assistant
+// Docs: https://docs.openclaw.ai
+{
+  agent: {
+    // Use Google Gemini as the model (same API key as Bold Layers)
+    model: "google/gemini-2.0-flash",
+    systemPrompt: `You are the Bold Layers AI Production Assistant. You help Balaji and his team generate design blueprints, production scripts, and creative strategies for digital marketing assets.
+
+You work for Bold Layers — an AI-powered digital marketing production studio that creates assets for Adobe Illustrator (Instagram Posters), Adobe InDesign (Promotional Flyers), Adobe After Effects (Instagram Reels), and Blender (3D Cinematics).
+
+When users send you a design brief, call the bold-layers skill to generate a full production blueprint.
+
+Keep responses concise and actionable. Always confirm the platform (Illustrator/InDesign/After Effects/Blender) if not specified.`,
+  },
+
+  channels: {
+    telegram: {
+      enabled: true,
+      // Token is read from TELEGRAM_BOT_TOKEN env var
+      // Get yours free at t.me/BotFather
+    },
+  },
+
+  skills: [
+    "~/.openclaw/skills/bold-layers.md",
+  ],
+
+  security: {
+    // Only respond to known users — add your Telegram user ID here
+    allowlist: [],
+    // Set to false to allow anyone to message your bot (not recommended for production)
+    requireAllowlist: false,
+  },
+}

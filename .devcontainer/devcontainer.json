@@ -1,0 +1,32 @@
+{
+  "name": "Bold Layers + OpenClaw Assistant",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "postCreateCommand": "npm install -g openclaw@latest && npm install && bash .devcontainer/setup.sh",
+  "forwardPorts": [5173, 18789],
+  "portsAttributes": {
+    "5173": { "label": "Bold Layers UI", "onAutoForward": "openBrowser" },
+    "18789": { "label": "OpenClaw Gateway", "onAutoForward": "silent" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "remoteEnv": {
+    "VITE_GEMINI_API_KEY": "${localEnv:VITE_GEMINI_API_KEY}",
+    "GEMINI_API_KEY": "${localEnv:VITE_GEMINI_API_KEY}",
+    "TELEGRAM_BOT_TOKEN": "${localEnv:TELEGRAM_BOT_TOKEN}"
+  }
+}
